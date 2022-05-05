@@ -22,11 +22,11 @@ const statusMap = {
         allowedUsers: [UserTypes.ADMIN, UserTypes.CONTRACTOR]
     },
 	PENDING: {
-        allowedActions: [JobStatusConstants.PENDING, JobStatusConstants.ONHOLD, JobStatusConstants.DONE],
+        allowedActions: [JobStatusConstants.STARTED, JobStatusConstants.ONHOLD, JobStatusConstants.DONE],
         allowedUsers: [UserTypes.ADMIN, UserTypes.CONTRACTOR]
     },
 	ONHOLD: {
-        allowedActions: [JobStatusConstants.PENDING, JobStatusConstants.ONHOLD, JobStatusConstants.DONE],
+        allowedActions: [JobStatusConstants.STARTED, JobStatusConstants.PENDING, JobStatusConstants.DONE],
         allowedUsers: [UserTypes.ADMIN, UserTypes.CONTRACTOR]
     },
 	DONE: {
