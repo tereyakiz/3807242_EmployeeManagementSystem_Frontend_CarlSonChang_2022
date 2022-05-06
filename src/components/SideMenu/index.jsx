@@ -31,7 +31,7 @@ const SideMenu = () => {
 				defaultOpenKeys={['sub1']}
 				mode='inline'
 			>
-				{(isAdmin || isCustomer) && (
+				{(isAdmin) && (
 					<Menu.Item
 						key=''
 						icon={

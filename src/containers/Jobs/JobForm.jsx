@@ -248,7 +248,8 @@ const JobForm = ({ record = {}, isEdit = false, visible = false, handleClose }) 
               </Form.Item>
             </Col>
           </Row>
-          <Row gutter={16}>
+          {
+            !isCustomer && <Row gutter={16}>
             <Col span={12}>
               <Form.Item
                 name="jobExpectedDeliveryDate"
@@ -274,8 +275,7 @@ const JobForm = ({ record = {}, isEdit = false, visible = false, handleClose }) 
               </Form.Item>
             </Col>
             <Col span={12}>
-              {
-                !isCustomer && <Form.Item
+              <Form.Item
                   name="jobDeliveryDate"
                   label="Delivery Date"
                   rules={[
@@ -297,9 +297,10 @@ const JobForm = ({ record = {}, isEdit = false, visible = false, handleClose }) 
                     }}
                   />
                 </Form.Item>
-              }
-            </Col>
+              </Col>
           </Row>
+}
+          
           {
             !isContractor && <>
               <Row gutter={16}>
