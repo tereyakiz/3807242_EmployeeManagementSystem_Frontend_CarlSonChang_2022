@@ -1,6 +1,7 @@
 const endpoints = {
   login: () => "/api/v1/accounts/login",
   getToken: (token) => `/api/v1/token_info/${token}`,
+  getAnalytics: () => "/api/v1/analytics",
 
   // users
   getUsers: () => "/api/v1/accounts/users",

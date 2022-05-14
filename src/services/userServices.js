@@ -2,6 +2,10 @@ import apiendpoints from "../common/apiendpoints";
 import method from "../common/method";
 import commonServices from "./commonServices";
 
+export const getAnalytics = () => {
+  return commonServices(apiendpoints.getAnalytics(), method.GET);
+};
+
 export const getUsers = () => {
   return commonServices(apiendpoints.getUsers(), method.GET);
 };

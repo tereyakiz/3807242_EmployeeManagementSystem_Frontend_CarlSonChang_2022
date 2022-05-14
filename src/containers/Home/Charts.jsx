@@ -1,9 +1,9 @@
-import React from "react";
+import React, { useEffect, useState, useCallback } from "react";
 
 import { Statistic, Card, Row, Col } from "antd";
-import Text from "antd/lib/typography/Text";
 import styled from "@emotion/styled";
 import color from "../../common/color";
+import { getAnalytics } from "../../services/userServices";
 
 const Container = styled.div`
   background-color: ${color.background};
@@ -13,8 +13,29 @@ const Container = styled.div`
 const Heading = styled.h1`
   text-align: left;
 `;
-
 const Charts = () => {
+  const [state, setState] = useState({
+    issueCount: 0,
+    jobCount: 0,
+    revenue: 0,
+    userCount: 0
+  });
+  const getAnalyticsData = useCallback(
+    async () => {
+        const res = await getAnalytics();
+        if (res && !res.error && !res.errors) {
+          setState(state => ({
+            ...state,
+            ...res
+          }))
+        }
+    }, [setState]
+  );
+
+  useEffect(() => {
+      getAnalyticsData();
+  }, [getAnalyticsData])
+
   return (
     <>
       <Container>
@@ -26,7 +47,7 @@ const Charts = () => {
             <Card>
               <Statistic
                 title="Jobs (last 30 days)"
-                value={20}
+                value={state.jobCount || 0}
                 valueStyle={{ color: "#3f8600" }}
                 // prefix={<ArrowUpOutlined />}
                 // suffix="%"
@@ -38,7 +59,7 @@ const Charts = () => {
             <Card>
               <Statistic
                 title="Revenue (last 30 days)"
-                value={12001.03}
+                value={state.revenue || 0}
                 precision={2}
                 valueStyle={{ color: "#cf1322" }}
                 // prefix={<ArrowDownOutlined />}
@@ -52,7 +73,7 @@ const Charts = () => {
             <Card>
               <Statistic
                 title="New Customers (last 30 days)"
-                value={15}
+                value={state.userCount || 0}
                 precision={2}
                 valueStyle={{ color: "#3f8600" }}
                 // prefix={<ArrowUpOutlined />}
@@ -65,7 +86,7 @@ const Charts = () => {
             <Card>
               <Statistic
                 title="New Issues (last 30 days)"
-                value={30}
+                value={state.issueCount || 0}
                 precision={2}
                 valueStyle={{ color: "#cf1322" }}
                 // prefix={<ArrowDownOutlined />}
